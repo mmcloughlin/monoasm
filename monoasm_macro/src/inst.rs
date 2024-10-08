@@ -384,6 +384,7 @@ impl Parse for Inst {
 
                 "lzcntq" => parse_2op!(Lzcntq),
                 "tzcntq" => parse_2op!(Tzcntq),
+                "popcntq" => parse_2op!(Popcntq),
 
                 "dq" => {
                     if input.peek(LitFloat) {
