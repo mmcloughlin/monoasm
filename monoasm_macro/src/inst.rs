@@ -117,6 +117,7 @@ pub enum Inst {
 
     Lzcntq(Register, RmOperand),
     Tzcntq(Register, RmOperand),
+    Popcntq(Register, RmOperand),
 }
 
 ///----------------------------------------------------------------------

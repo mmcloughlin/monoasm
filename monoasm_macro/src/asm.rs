@@ -324,6 +324,12 @@ pub fn compile(inst: Inst) -> TokenStream {
                 jit.enc_rexw_mr(&[0x0f, 0xbd], #op1, #op2);
             )
         }
+        Inst::Popcntq(op1, op2) => {
+            quote!(
+                jit.emitb(0xf3);
+                jit.enc_rexw_mr(&[0x0f, 0xb8], #op1, #op2);
+            )
+        }
     }
 }
 
