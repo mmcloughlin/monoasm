@@ -186,6 +186,15 @@ pub fn compile(inst: Inst) -> TokenStream {
             }
         }
 
+        Inst::Divl(op) => {
+            // DIV r/m32: EAX:quo EDX:rem <- EDX:EAX / r/m32
+            match op {
+                // DIV r/m32
+                // F7 /6
+                op => quote! { jit.enc_m_digit(&[0xf7], #op, 6); },
+            }
+        }
+
         Inst::Movsd(op1, op2) => match (op1, op2) {
             (XmOperand::Xmm(op1), op2) => quote! {
                 jit.emitb(0xf2);
