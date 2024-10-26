@@ -116,6 +116,7 @@ pub enum Inst {
     Leave,
     Ret,
     Syscall,
+    Int3,
 
     Lzcntq(Register, RmOperand),
     Tzcntq(Register, RmOperand),
@@ -384,6 +385,7 @@ impl Parse for Inst {
                 "jnle" => parse_jcc!(Gt),
 
                 "syscall" => parse_0op!(Syscall),
+                "int3" => parse_0op!(Int3),
                 "leave" => parse_0op!(Leave),
 
                 "lzcntq" => parse_2op!(Lzcntq),

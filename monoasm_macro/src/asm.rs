@@ -327,6 +327,9 @@ pub fn compile(inst: Inst) -> TokenStream {
         Inst::Syscall => quote!(
             jit.emit(&[0x0f, 0x05]);
         ),
+        Inst::Int3 => quote!(
+            jit.emit(&[0xcc]);
+        ),
         Inst::Leave => quote!(
             jit.emitb(0xc9);
         ),
