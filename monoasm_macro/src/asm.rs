@@ -235,6 +235,13 @@ pub fn compile(inst: Inst) -> TokenStream {
             }
         }
 
+        Inst::Cvttsd2si(op1, op2) => {
+            quote! {
+                jit.emitb(0xf2);
+                jit.enc_rex_mr(&[0x0f, 0x2c], #op1, #op2);
+            }
+        }
+
         Inst::Sqrtpd(Xmm(op1), op2) => {
             quote! {
                 jit.emitb(0x66);
