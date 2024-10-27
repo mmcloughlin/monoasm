@@ -100,6 +100,7 @@ pub enum Inst {
     Mulsd(Xmm, XmOperand),
     Divsd(Xmm, XmOperand),
     Xorps(Xmm, XmOperand),
+    ComIsd(Xmm, XmOperand),
     UComIsd(Xmm, XmOperand),
 
     Cvtsi2sdq(Xmm, RmOperand),
@@ -309,6 +310,8 @@ impl Parse for Inst {
                 "seta" => parse_set!(Setcc, A),
                 "sets" => parse_set!(Setcc, S),
                 "setns" => parse_set!(Setcc, Ns),
+                "setp" => parse_set!(Setcc, P),
+                "setnp" => parse_set!(Setcc, Np),
                 "setlt" => parse_set!(Setcc, Lt),
                 "setge" => parse_set!(Setcc, Ge),
                 "setle" => parse_set!(Setcc, Le),
@@ -342,6 +345,7 @@ impl Parse for Inst {
                 "mulsd" => parse_2op!(Mulsd),
                 "divsd" => parse_2op!(Divsd),
                 "xorps" => parse_2op!(Xorps),
+                "comisd" => parse_2op!(ComIsd),
                 "ucomisd" => parse_2op!(UComIsd),
 
                 "cvtsi2sdq" => parse_2op!(Cvtsi2sdq),

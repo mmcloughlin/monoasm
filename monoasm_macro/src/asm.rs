@@ -323,6 +323,14 @@ pub fn compile(inst: Inst) -> TokenStream {
             quote!( jit.enc_d(&[0x0f, #cond], #dest); )
         }
 
+        Inst::ComIsd(op1, op2) => {
+            let op1 = op1.0;
+            quote!(
+                jit.emitb(0x66);
+                jit.enc_rex_mr(&[0x0f, 0x2f], Reg::from(#op1), #op2);
+            )
+        }
+
         Inst::UComIsd(op1, op2) => {
             let op1 = op1.0;
             quote!(
